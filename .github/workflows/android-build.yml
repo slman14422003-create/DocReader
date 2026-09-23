@@ -36,13 +36,17 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: إعداد Android SDK الأساسي
-        uses: android-actions/setup-android@v3
-
       - name: تثبيت منصة وأدوات البناء المطلوبة (API ${{ env.ANDROID_COMPILE_SDK }})
+        # نعتمد على SDK المثبّت مسبقًا على السيرفر (لا نستخدم android-actions/setup-android
+        # لأنه معطّل حاليًا ويحاول تثبيت حزمة قديمة غير موجودة اسمها "tools")
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -f "$SDKMANAGER" ]; then
+            SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -maxdepth 2 -name sdkmanager | sort -r | head -n1)
+          fi
+          echo "استخدام: $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
 
       - name: إعداد Gradle 9.5
         uses: gradle/actions/setup-gradle@v4
@@ -112,13 +116,17 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: إعداد Android SDK الأساسي
-        uses: android-actions/setup-android@v3
-
       - name: تثبيت منصة وأدوات البناء المطلوبة (API ${{ env.ANDROID_COMPILE_SDK }})
+        # نعتمد على SDK المثبّت مسبقًا على السيرفر (لا نستخدم android-actions/setup-android
+        # لأنه معطّل حاليًا ويحاول تثبيت حزمة قديمة غير موجودة اسمها "tools")
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -f "$SDKMANAGER" ]; then
+            SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -maxdepth 2 -name sdkmanager | sort -r | head -n1)
+          fi
+          echo "استخدام: $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
 
       - name: إعداد Gradle 9.5
         uses: gradle/actions/setup-gradle@v4
