@@ -17,7 +17,7 @@ permissions:
 
 env:
   # نسخة SDK/الأدوات المطابقة لـ AGP 9.3.x (تُستخدم في خطوة sdkmanager بالأسفل)
-  ANDROID_COMPILE_SDK: "37"
+  ANDROID_COMPILE_SDK: "36"
   ANDROID_BUILD_TOOLS: "36.0.0"
 
 jobs:
