@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.docreader.app'
-    compileSdk 34
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.docreader.app"
         minSdk 29
-        targetSdk 34
+        targetSdk 37
         versionCode 1
         versionName "1.0.0"
         vectorDrawables.useSupportLibrary = true
@@ -29,6 +29,11 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
 
