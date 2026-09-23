@@ -10,4 +10,21 @@
     <string name="unsupported_format">صيغة الملف غير مدعومة حاليًا</string>
     <string name="page_indicator">صفحة %1$d من %2$d</string>
     <string name="slide_indicator">شريحة %1$d من %2$d</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_appearance">المظهر</string>
+    <string name="settings_color_mode">وضع الألوان</string>
+    <string name="settings_color_mode_light">فاتح</string>
+    <string name="settings_color_mode_dark">داكن</string>
+    <string name="settings_color_mode_system">حسب النظام</string>
+    <string name="settings_general">عام</string>
+    <string name="settings_clear_recent">مسح الملفات الأخيرة</string>
+    <string name="settings_clear_recent_sub">إزالة السجل من الشاشة الرئيسية فقط</string>
+    <string name="settings_clear_recent_confirm_title">مسح الملفات الأخيرة؟</string>
+    <string name="settings_clear_recent_confirm_msg">سيُحذف السجل فقط، الملفات نفسها تبقى في مكانها.</string>
+    <string name="settings_clear_recent_done">تم مسح القائمة</string>
+    <string name="settings_about">عن التطبيق</string>
+    <string name="settings_about_sub">الإصدار %1$s</string>
+    <string name="cancel">إلغاء</string>
+    <string name="confirm">تأكيد</string>
 </resources>
