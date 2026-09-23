@@ -7,8 +7,22 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+# يلغي أي تشغيل سابق قيد التنفيذ لنفس الفرع عند دفع جديد (توفير وقت ودقائق تشغيل)
+concurrency:
+  group: android-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  # نسخة SDK/الأدوات المطابقة لـ AGP 9.3.x (تُستخدم في خطوة sdkmanager بالأسفل)
+  ANDROID_COMPILE_SDK: "37"
+  ANDROID_BUILD_TOOLS: "36.0.0"
+
 jobs:
   build:
+    name: بناء واختبار
     runs-on: ubuntu-latest
 
     steps:
@@ -22,24 +36,68 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: إعداد Android SDK
+      - name: إعداد Android SDK الأساسي
         uses: android-actions/setup-android@v3
 
-      - name: إعداد Gradle
+      - name: تثبيت منصة وأدوات البناء المطلوبة (API ${{ env.ANDROID_COMPILE_SDK }})
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
+
+      - name: إعداد Gradle 9.5
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: 8.7
+          gradle-version: 9.5.0
+
+      - name: تشغيل اختبارات الوحدة
+        run: gradle testDebugUnitTest --stacktrace
+        continue-on-error: true
+
+      - name: فحص Lint
+        run: gradle lintDebug --stacktrace
+        continue-on-error: true
 
       - name: بناء APK (Debug)
         run: gradle assembleDebug --stacktrace
+
+      - name: رفع تقرير Lint كمخرج
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.html
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: رفع نتائج اختبارات الوحدة
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-test-report
+          path: app/build/reports/tests/testDebugUnitTest
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: رفع الـ APK كمخرج (Artifact)
         uses: actions/upload-artifact@v4
         with:
           name: DocReader-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: ملخص البناء
+        if: always()
+        run: |
+          echo "### نتيجة بناء DocReader 📱" >> $GITHUB_STEP_SUMMARY
+          if [ -f app/build/outputs/apk/debug/app-debug.apk ]; then
+            SIZE=$(du -h app/build/outputs/apk/debug/app-debug.apk | cut -f1)
+            echo "- ✅ تم بناء APK بنجاح (الحجم: $SIZE)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ فشل بناء الـ APK" >> $GITHUB_STEP_SUMMARY
+          fi
 
   release:
+    name: إصدار تلقائي
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -54,22 +112,33 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: إعداد Android SDK
+      - name: إعداد Android SDK الأساسي
         uses: android-actions/setup-android@v3
 
-      - name: إعداد Gradle
+      - name: تثبيت منصة وأدوات البناء المطلوبة (API ${{ env.ANDROID_COMPILE_SDK }})
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" "platform-tools"
+
+      - name: إعداد Gradle 9.5
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: 8.7
+          gradle-version: 9.5.0
 
       - name: بناء APK (Release غير موقّع)
         run: gradle assembleRelease --stacktrace
+
+      - name: بناء حزمة AAB (Release غير موقّعة)
+        run: gradle bundleRelease --stacktrace
 
       - name: إنشاء إصدار GitHub تلقائي
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
           name: "بناء تلقائي #${{ github.run_number }}"
-          files: app/build/outputs/apk/release/app-release-unsigned.apk
+          generate_release_notes: true
+          files: |
+            app/build/outputs/apk/release/app-release-unsigned.apk
+            app/build/outputs/bundle/release/app-release.aab
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
