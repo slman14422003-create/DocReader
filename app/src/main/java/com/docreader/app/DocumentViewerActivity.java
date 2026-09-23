@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -60,6 +63,7 @@ public class DocumentViewerActivity extends AppCompatActivity {
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
+        applyWindowInsets(toolbar);
 
         progressLoading = findViewById(R.id.progressLoading);
         pager = findViewById(R.id.pager);
@@ -79,6 +83,21 @@ public class DocumentViewerActivity extends AppCompatActivity {
             return;
         }
         loadDocument(Uri.parse(uriString), name);
+    }
+
+    private void applyWindowInsets(MaterialToolbar toolbar) {
+        View root = findViewById(R.id.viewerRoot);
+        final int toolbarPaddingTop = toolbar.getPaddingTop();
+        final int rootPaddingBottom = root.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            toolbar.setPadding(toolbar.getPaddingLeft(), toolbarPaddingTop + bars.top,
+                    toolbar.getPaddingRight(), toolbar.getPaddingBottom());
+            root.setPadding(root.getPaddingLeft(), root.getPaddingTop(),
+                    root.getPaddingRight(), rootPaddingBottom + bars.bottom);
+            return insets;
+        });
     }
 
     private void loadDocument(Uri uri, String name) {

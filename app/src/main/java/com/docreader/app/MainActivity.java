@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +42,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerRecentFiles.setLayoutManager(new LinearLayoutManager(this));
 
         findViewById(R.id.cardOpenFile).setOnClickListener(v -> pickDocument());
+
+        applyWindowInsets();
+    }
+
+    private void applyWindowInsets() {
+        View root = findViewById(R.id.mainRoot);
+        View header = findViewById(R.id.layoutHeader);
+        final int headerPaddingTop = header.getPaddingTop();
+        final int rootPaddingBottom = root.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            header.setPadding(header.getPaddingLeft(), headerPaddingTop + bars.top,
+                    header.getPaddingRight(), header.getPaddingBottom());
+            root.setPadding(root.getPaddingLeft(), root.getPaddingTop(),
+                    root.getPaddingRight(), rootPaddingBottom + bars.bottom);
+            return insets;
+        });
     }
 
     @Override
