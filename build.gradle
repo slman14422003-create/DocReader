@@ -1,3 +1,5 @@
 plugins {
-    id 'com.android.application' version '8.4.2' apply false
+    // آخر إصدار مستقر من Android Gradle Plugin (AGP 9.3.3 - يوليو 2026)
+    // يدعم حتى API 37، ويتطلب Gradle 9.5.0 وJDK 17
+    id 'com.android.application' version '9.3.3' apply false
 }
