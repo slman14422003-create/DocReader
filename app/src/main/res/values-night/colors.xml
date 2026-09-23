@@ -1,1 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- خلفيات داكنة دافئة أشبه بوضع Claude الليلي -->
+    <color name="background_primary">#262624</color>
+    <color name="background_secondary">#1E1D1B</color>
+    <color name="surface_card">#30302E</color>
+    <color name="surface_elevated">#35342F</color>
 
+    <!-- لون التمييز البرتقالي المطفي المميز لـ Claude -->
+    <color name="accent_primary">#D97757</color>
+    <color name="accent_primary_dark">#C2694B</color>
+    <color name="accent_light">#4A362E</color>
+
+    <!-- نصوص -->
+    <color name="text_primary">#F4F3EE</color>
+    <color name="text_secondary">#B7B5AD</color>
+    <color name="text_tertiary">#87857D</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- حدود وفواصل -->
+    <color name="divider">#3A3936</color>
+    <color name="border_subtle">#40403B</color>
+
+    <!-- حالات -->
+    <color name="error_color">#E5776A</color>
+    <color name="success_color">#7FB285</color>
+</resources>
