@@ -32,6 +32,10 @@ public class RecentFilesStore {
         save(context, list);
     }
 
+    public static void clear(Context context) {
+        save(context, new ArrayList<>());
+    }
+
     public static List<RecentFile> getAll(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         String json = prefs.getString(KEY_RECENTS, "[]");
