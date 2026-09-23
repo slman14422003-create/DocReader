@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- خلفيات دافئة أشبه بواجهة Claude -->
+    <color name="background_primary">#FAF9F6</color>
+    <color name="background_secondary">#F0EEE6</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_elevated">#F5F3ED</color>
+
+    <!-- لون التمييز البرتقالي المطفي المميز لـ Claude -->
+    <color name="accent_primary">#CC785C</color>
+    <color name="accent_primary_dark">#B35F45</color>
+    <color name="accent_light">#E8C4B8</color>
+
+    <!-- نصوص -->
+    <color name="text_primary">#1F1E1D</color>
+    <color name="text_secondary">#6B6A65</color>
+    <color name="text_tertiary">#9B9A94</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- حدود وفواصل -->
+    <color name="divider">#E5E2D9</color>
+    <color name="border_subtle">#DDD9CE</color>
+
+    <!-- حالات -->
+    <color name="error_color">#C0392B</color>
+    <color name="success_color">#4C7A51</color>
+</resources>
