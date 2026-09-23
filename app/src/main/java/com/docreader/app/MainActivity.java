@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerRecentFiles.setLayoutManager(new LinearLayoutManager(this));
 
         findViewById(R.id.cardOpenFile).setOnClickListener(v -> pickDocument());
+        findViewById(R.id.btnSettings).setOnClickListener(v ->
+                startActivity(new Intent(this, SettingsActivity.class)));
 
         applyWindowInsets();
     }
