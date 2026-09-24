@@ -24,4 +24,10 @@
     <!-- حالات -->
     <color name="error_color">#E5776A</color>
     <color name="success_color">#7FB285</color>
+
+    <!-- ألوان أيقونات أنواع الملفات -->
+    <color name="type_pdf">#E5776A</color>
+    <color name="type_docx">#6FA0F0</color>
+    <color name="type_xlsx">#5DBE83</color>
+    <color name="type_pptx">#E8A23D</color>
 </resources>
