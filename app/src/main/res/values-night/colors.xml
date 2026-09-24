@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- خلفيات داكنة دافئة أشبه بوضع Claude الليلي -->
-    <color name="background_primary">#262624</color>
-    <color name="background_secondary">#1E1D1B</color>
-    <color name="surface_card">#30302E</color>
-    <color name="surface_elevated">#35342F</color>
+    <!-- خلفيات محايدة أقرب للأسود الصافي (بدون ميل بني) كما في تطبيق Claude -->
+    <color name="background_primary">#000000</color>
+    <color name="background_secondary">#000000</color>
+    <color name="surface_card">#1C1C1C</color>
+    <color name="surface_elevated">#242424</color>
 
     <!-- لون التمييز البرتقالي المطفي المميز لـ Claude -->
     <color name="accent_primary">#D97757</color>
     <color name="accent_primary_dark">#C2694B</color>
-    <color name="accent_light">#4A362E</color>
+    <color name="accent_light">#2A2A2A</color>
 
-    <!-- نصوص -->
-    <color name="text_primary">#F4F3EE</color>
-    <color name="text_secondary">#B7B5AD</color>
-    <color name="text_tertiary">#87857D</color>
+    <!-- نصوص محايدة -->
+    <color name="text_primary">#EDEDED</color>
+    <color name="text_secondary">#A8A8A8</color>
+    <color name="text_tertiary">#7A7A7A</color>
     <color name="text_on_accent">#FFFFFF</color>
 
-    <!-- حدود وفواصل -->
-    <color name="divider">#3A3936</color>
-    <color name="border_subtle">#40403B</color>
+    <!-- حدود وفواصل محايدة -->
+    <color name="divider">#2A2A2A</color>
+    <color name="border_subtle">#333333</color>
 
     <!-- حالات -->
-    <color name="error_color">#E5776A</color>
+    <color name="error_color">#E5594A</color>
     <color name="success_color">#7FB285</color>
 
     <!-- ألوان أيقونات أنواع الملفات -->
