@@ -1,12 +1,15 @@
 package com.docreader.app.ui;
 
+import android.content.res.ColorStateList;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.docreader.app.R;
@@ -39,7 +42,9 @@ public class RecentFilesAdapter extends RecyclerView.Adapter<RecentFilesAdapter.
         RecentFile file = items.get(position);
         holder.name.setText(file.displayName);
         FileTypeUtils.DocType type = FileTypeUtils.detect(file.displayName);
-        holder.icon.setText(FileTypeUtils.iconFor(type));
+        holder.icon.setImageResource(FileTypeUtils.iconResFor(type));
+        holder.icon.setImageTintList(ColorStateList.valueOf(
+                ContextCompat.getColor(holder.itemView.getContext(), FileTypeUtils.colorResFor(type))));
         holder.date.setText(DateUtils.getRelativeTimeSpanString(file.lastOpened));
         holder.itemView.setOnClickListener(v -> listener.onClick(file));
     }
@@ -48,7 +53,8 @@ public class RecentFilesAdapter extends RecyclerView.Adapter<RecentFilesAdapter.
     public int getItemCount() { return items.size(); }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView icon, name, date;
+        ImageView icon;
+        TextView name, date;
         VH(View v) {
             super(v);
             icon = v.findViewById(R.id.textIcon);
