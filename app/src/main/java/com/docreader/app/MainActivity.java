@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.settings_clear_recent_confirm_msg),
                 getString(R.string.confirm),
                 getString(R.string.cancel),
+                true,
                 () -> {
                     RecentFilesStore.clear(this);
                     refreshRecentFiles();

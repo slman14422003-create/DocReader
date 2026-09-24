@@ -75,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
                 getString(R.string.settings_clear_recent_confirm_msg),
                 getString(R.string.confirm),
                 getString(R.string.cancel),
+                true,
                 () -> {
                     RecentFilesStore.clear(this);
                     Toast.makeText(this, R.string.settings_clear_recent_done, Toast.LENGTH_SHORT).show();
