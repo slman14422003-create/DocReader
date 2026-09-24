@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.docreader.app.model.RecentFile;
 import com.docreader.app.ui.RecentFilesAdapter;
+import com.docreader.app.util.AppDialogs;
 import com.docreader.app.util.FileTypeUtils;
 import com.docreader.app.util.RecentFilesStore;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.cardOpenFile).setOnClickListener(v -> pickDocument());
         findViewById(R.id.btnSettings).setOnClickListener(v ->
                 startActivity(new Intent(this, SettingsActivity.class)));
+        findViewById(R.id.btnClearRecent).setOnClickListener(v -> confirmClearRecent());
 
         applyWindowInsets();
     }
@@ -101,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(DocumentViewerActivity.EXTRA_URI, uri.toString());
         intent.putExtra(DocumentViewerActivity.EXTRA_NAME, displayName);
         startActivity(intent);
+    }
+
+    private void confirmClearRecent() {
+        AppDialogs.showConfirm(this,
+                getString(R.string.settings_clear_recent_confirm_title),
+                getString(R.string.settings_clear_recent_confirm_msg),
+                getString(R.string.confirm),
+                getString(R.string.cancel),
+                () -> {
+                    RecentFilesStore.clear(this);
+                    refreshRecentFiles();
+                });
     }
 
     private void refreshRecentFiles() {

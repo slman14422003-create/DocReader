@@ -7,12 +7,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.docreader.app.util.AppDialogs;
 import com.docreader.app.util.RecentFilesStore;
 import com.docreader.app.util.ThemeUtils;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -33,7 +33,12 @@ public class SettingsActivity extends AppCompatActivity {
         textColorModeValue = findViewById(R.id.textColorModeValue);
         updateColorModeLabel();
 
-        findViewById(R.id.rowColorMode).setOnClickListener(v -> showColorModeDialog());
+        findViewById(R.id.rowColorMode).setOnClickListener(v ->
+                AppDialogs.showColorModePicker(this, ThemeUtils.getSavedMode(this), mode -> {
+                    ThemeUtils.setMode(this, mode);
+                    updateColorModeLabel();
+                }));
+
         findViewById(R.id.rowClearRecent).setOnClickListener(v -> showClearRecentDialog());
         findViewById(R.id.rowAbout).setOnClickListener(v -> showAboutDialog());
 
@@ -64,48 +69,27 @@ public class SettingsActivity extends AppCompatActivity {
         textColorModeValue.setText(resId);
     }
 
-    private void showColorModeDialog() {
-        String[] labels = {
-                getString(R.string.settings_color_mode_system),
-                getString(R.string.settings_color_mode_light),
-                getString(R.string.settings_color_mode_dark)
-        };
-        String[] modes = {ThemeUtils.MODE_SYSTEM, ThemeUtils.MODE_LIGHT, ThemeUtils.MODE_DARK};
-        String current = ThemeUtils.getSavedMode(this);
-        int checked = 0;
-        for (int i = 0; i < modes.length; i++) if (modes[i].equals(current)) checked = i;
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_color_mode)
-                .setSingleChoiceItems(labels, checked, (dialog, which) -> {
-                    ThemeUtils.setMode(this, modes[which]);
-                    updateColorModeLabel();
-                    dialog.dismiss();
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
-    }
-
     private void showClearRecentDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_clear_recent_confirm_title)
-                .setMessage(R.string.settings_clear_recent_confirm_msg)
-                .setPositiveButton(R.string.confirm, (dialog, which) -> {
+        AppDialogs.showConfirm(this,
+                getString(R.string.settings_clear_recent_confirm_title),
+                getString(R.string.settings_clear_recent_confirm_msg),
+                getString(R.string.confirm),
+                getString(R.string.cancel),
+                () -> {
                     RecentFilesStore.clear(this);
                     Toast.makeText(this, R.string.settings_clear_recent_done, Toast.LENGTH_SHORT).show();
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
+                });
     }
 
     private void showAboutDialog() {
         String message = getString(R.string.app_name) + "\n" +
                 getString(R.string.settings_about_sub, getVersionName());
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_about)
-                .setMessage(message)
-                .setPositiveButton(R.string.confirm, null)
-                .show();
+        AppDialogs.showConfirm(this,
+                getString(R.string.settings_about),
+                message,
+                getString(R.string.confirm),
+                null,
+                null);
     }
 
     private String getVersionName() {
