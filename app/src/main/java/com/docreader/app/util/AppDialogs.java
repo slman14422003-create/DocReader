@@ -22,6 +22,12 @@ public class AppDialogs {
 
     public static void showConfirm(Context context, String title, String message,
                                     String positiveText, String negativeText, OnConfirm onPositive) {
+        showConfirm(context, title, message, positiveText, negativeText, false, onPositive);
+    }
+
+    public static void showConfirm(Context context, String title, String message,
+                                    String positiveText, String negativeText,
+                                    boolean destructive, OnConfirm onPositive) {
         Dialog dialog = buildBaseDialog(context, R.layout.dialog_confirm);
 
         TextView titleView = dialog.findViewById(R.id.dialogTitle);
@@ -37,6 +43,9 @@ public class AppDialogs {
         }
 
         btnPositive.setText(positiveText);
+        btnPositive.setBackgroundResource(destructive
+                ? R.drawable.bg_button_filled_pill_destructive
+                : R.drawable.bg_button_filled_pill);
         btnPositive.setOnClickListener(v -> {
             dialog.dismiss();
             if (onPositive != null) onPositive.run();
