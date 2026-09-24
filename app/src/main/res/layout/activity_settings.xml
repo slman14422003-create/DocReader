@@ -63,25 +63,19 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:padding="16dp">
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="16dp">
 
-                    <FrameLayout
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/bg_icon_badge">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="🌗"
-                            android:textSize="16sp" />
-                    </FrameLayout>
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_theme"
+                        android:tint="@color/text_secondary" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginStart="18dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -90,8 +84,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/settings_color_mode"
                             android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/textColorModeValue"
@@ -103,12 +96,11 @@
                             tools:text="حسب النظام" />
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="›"
-                        android:textColor="@color/text_tertiary"
-                        android:textSize="20sp" />
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chevron"
+                        android:tint="@color/text_tertiary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -149,25 +141,19 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackground"
-                        android:padding="16dp">
+                        android:paddingHorizontal="18dp"
+                        android:paddingVertical="16dp">
 
-                        <FrameLayout
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:background="@drawable/bg_icon_badge">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="🗑"
-                                android:textSize="15sp" />
-                        </FrameLayout>
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_trash"
+                            android:tint="@color/text_secondary" />
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="14dp"
+                            android:layout_marginStart="18dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -176,8 +162,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/settings_clear_recent"
                                 android:textColor="@color/text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -188,18 +173,17 @@
                                 android:textSize="12sp" />
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="›"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="20sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_chevron"
+                            android:tint="@color/text_tertiary" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginStart="68dp"
+                        android:layout_marginStart="58dp"
                         android:background="@color/divider" />
 
                     <LinearLayout
@@ -211,26 +195,19 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackground"
-                        android:padding="16dp">
+                        android:paddingHorizontal="18dp"
+                        android:paddingVertical="16dp">
 
-                        <FrameLayout
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"
-                            android:background="@drawable/bg_icon_badge">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="✦"
-                                android:textColor="@color/accent_primary"
-                                android:textSize="15sp" />
-                        </FrameLayout>
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_sparkle"
+                            android:tint="@color/accent_primary" />
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="14dp"
+                            android:layout_marginStart="18dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -239,8 +216,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/settings_about"
                                 android:textColor="@color/text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:id="@+id/textAboutValue"
@@ -252,12 +228,11 @@
                                 tools:text="الإصدار 1.0.0" />
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="›"
-                            android:textColor="@color/text_tertiary"
-                            android:textSize="20sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_chevron"
+                            android:tint="@color/text_tertiary" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

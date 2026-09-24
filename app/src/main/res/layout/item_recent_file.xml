@@ -27,13 +27,11 @@
             android:layout_height="42dp"
             android:background="@drawable/bg_icon_badge">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="19sp"
-                android:text="📄" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <LinearLayout
@@ -62,11 +60,10 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="›"
-            android:textColor="@color/text_tertiary"
-            android:textSize="20sp" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_chevron"
+            android:tint="@color/text_tertiary" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

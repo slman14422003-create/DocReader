@@ -29,13 +29,12 @@
                 android:layout_height="44dp"
                 android:background="@drawable/bg_icon_badge">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:text="✦"
-                    android:textColor="@color/accent_primary"
-                    android:textSize="20sp" />
+                    android:src="@drawable/ic_sparkle"
+                    android:tint="@color/accent_primary" />
             </FrameLayout>
 
             <LinearLayout
@@ -64,6 +63,23 @@
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/btnClearRecent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_icon_badge"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_trash"
+                    android:tint="@color/text_secondary" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:id="@+id/btnSettings"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -73,13 +89,12 @@
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:text="⚙"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="18sp" />
+                    android:src="@drawable/ic_settings"
+                    android:tint="@color/text_secondary" />
             </FrameLayout>
         </LinearLayout>
 
@@ -115,12 +130,12 @@
                     android:layout_height="48dp"
                     android:background="@drawable/bg_icon_badge_on_accent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center"
-                        android:text="📂"
-                        android:textSize="22sp" />
+                        android:src="@drawable/ic_folder"
+                        android:tint="@color/text_on_accent" />
                 </FrameLayout>
 
                 <LinearLayout
@@ -148,13 +163,12 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textColor="@color/text_on_accent"
-                    android:alpha="0.8"
-                    android:textSize="22sp" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_chevron"
+                    android:tint="@color/text_on_accent"
+                    android:alpha="0.85" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
