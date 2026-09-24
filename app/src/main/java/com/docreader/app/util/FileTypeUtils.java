@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.database.Cursor;
 
+import com.docreader.app.R;
+
 public class FileTypeUtils {
 
     public enum DocType { PDF, DOCX, XLSX, PPTX, TXT, UNKNOWN }
@@ -35,14 +37,18 @@ public class FileTypeUtils {
         return result;
     }
 
-    public static String iconFor(DocType type) {
+    /** أيقونة موحّدة على شكل مستند؛ اللون هو ما يميّز نوع الملف (انظر colorResFor). */
+    public static int iconResFor(DocType type) {
+        return R.drawable.ic_file;
+    }
+
+    public static int colorResFor(DocType type) {
         switch (type) {
-            case PDF: return "📕";
-            case DOCX: return "📘";
-            case XLSX: return "📗";
-            case PPTX: return "📙";
-            case TXT: return "📄";
-            default: return "📎";
+            case PDF: return R.color.type_pdf;
+            case DOCX: return R.color.type_docx;
+            case XLSX: return R.color.type_xlsx;
+            case PPTX: return R.color.type_pptx;
+            default: return R.color.text_tertiary;
         }
     }
 }
