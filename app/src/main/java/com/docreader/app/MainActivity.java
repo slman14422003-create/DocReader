@@ -81,8 +81,17 @@ public class MainActivity extends AppCompatActivity {
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "application/vnd.ms-powerpoint",
                 "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "application/rtf",
+                "text/rtf",
+                "text/html",
                 "text/plain",
                 "text/csv",
+                "text/markdown",
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+                "image/bmp",
+                "image/gif",
                 "*/*"
         });
     }
