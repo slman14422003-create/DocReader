@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:visibility="gone" />
 
-        <!-- لنص Word -->
+        <!-- لنص Word / RTF / TXT -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerContent"
             android:layout_width="match_parent"
@@ -45,24 +45,72 @@
             android:paddingBottom="24dp"
             android:visibility="gone" />
 
-        <!-- لجدول Excel: تمرير أفقي وعمودي مع محاذاة أعمدة صحيحة -->
-        <HorizontalScrollView
-            android:id="@+id/horizontalTableScroll"
+        <!-- لجدول Excel/CSV: شريط تبويب الأوراق + تمرير أفقي وعمودي -->
+        <LinearLayout
+            android:id="@+id/xlsxContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:visibility="gone">
 
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+            <HorizontalScrollView
+                android:id="@+id/sheetTabsScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_primary"
+                android:scrollbars="none"
+                android:visibility="gone">
 
-                <TableLayout
-                    android:id="@+id/tableExcel"
+                <LinearLayout
+                    android:id="@+id/sheetTabsRow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp" />
-            </ScrollView>
-        </HorizontalScrollView>
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp" />
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TableLayout
+                        android:id="@+id/tableExcel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp" />
+                </ScrollView>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <!-- لصور مستقلة -->
+        <ScrollView
+            android:id="@+id/imageScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imageSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+        </ScrollView>
+
+        <!-- لملفات HTML -->
+        <WebView
+            android:id="@+id/webViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/layoutError"
@@ -71,7 +119,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:paddingHorizontal="32dp">
 
             <TextView
                 android:layout_width="wrap_content"
