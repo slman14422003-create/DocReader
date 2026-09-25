@@ -282,7 +282,7 @@ public class DocumentViewerActivity extends AppCompatActivity {
                     tab.setPadding(36, 16, 36, 16);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    lp.marginEnd = 8;
+                    lp.setMarginEnd(8);
                     tab.setLayoutParams(lp);
                     tab.setOnClickListener(v -> selectSheet(index));
                     sheetTabsRow.addView(tab);
