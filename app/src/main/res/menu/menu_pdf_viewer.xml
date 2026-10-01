@@ -1,1 +1,20 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- قائمة قارئ PDF: عنصر واحد ثابت لتكبير/تصغير (بِسمة زجاجية واحدة تحوي
+     الزرّين، بدل أيقونتين منفصلتين عائمتين بلا حاوية بصرية)، وزر "المزيد"
+     (⋮) بنفس أسلوب أزرار الأيقونات الدائرية المستخدم في رؤوس بقية شاشات
+     التطبيق - يفتح قائمة منسدلة مخصّصة (popup_pdf_more_menu) مبنية بنفس
+     أنماط صفوف الإعدادات (Settings.Row) بدل قائمة Toolbar الافتراضية، اللي
+     مش دايمًا بتلتزم بألوان/شكل هوية التطبيق على كل الأجهزة. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_pdf_zoom"
+        android:title="تكبير/تصغير"
+        app:actionLayout="@layout/action_pdf_zoom_control"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_pdf_more"
+        android:title="المزيد"
+        app:actionLayout="@layout/action_pdf_more_button"
+        app:showAsAction="always" />
+</menu>
