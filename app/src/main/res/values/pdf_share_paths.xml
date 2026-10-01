@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- مشاركة/فتح ملفات قارئ PDF (نسخ مؤقتة داخل كاش التطبيق) بتطبيق خارجي عبر FileProvider -->
-<paths>
-    <cache-path name="pdf_reader_cache" path="." />
-</paths>
