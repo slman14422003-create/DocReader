@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- كتاب مفتوح بلون الكريم فوق خلفية Claude البرتقالية + شرارة صغيرة.
+     كل العناصر داخل المنطقة الآمنة (21..87) للأيقونات التكيفية. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ظل خفيف تحت الكتاب -->
+    <path
+        android:fillColor="#26000000"
+        android:pathData="M28,77 C37,74 47,75 54,80 C61,75 71,74 80,77 L80,79 C71,76 61,77 54,82 C47,77 37,76 28,79 Z" />
+
+    <!-- الصفحة اليسرى -->
+    <path
+        android:fillColor="#FFFAF5F0"
+        android:pathData="M52.2,42 C45,36.5 36,35.5 27.5,38.5 L27.5,74 C36,71 45,72 52.2,77.5 Z" />
+
+    <!-- الصفحة اليمنى (أغمق قليلاً لإظهار العمق) -->
+    <path
+        android:fillColor="#FFF0E4DA"
+        android:pathData="M55.8,42 C63,36.5 72,35.5 80.5,38.5 L80.5,74 C72,71 63,72 55.8,77.5 Z" />
+
+    <!-- أسطر النص: يسار -->
+    <path
+        android:strokeColor="#D97757"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M33,46.5 C37.5,45.3 42.5,46 47,48 M33,54 C37.5,52.8 42.5,53.5 47,55.5 M33,61.5 C37.5,60.3 41,60.8 44,62" />
+
+    <!-- أسطر النص: يمين -->
+    <path
+        android:strokeColor="#D97757"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M61,48 C65.5,46 70.5,45.3 75,46.5 M61,55.5 C65.5,53.5 70.5,52.8 75,54 M61,63 C64,61.8 67.5,61.3 71,62.3" />
+
+    <!-- شرارة Claude -->
+    <path
+        android:fillColor="#FFFAF5F0"
+        android:pathData="M54,17.5 C54.9,21.7 57.3,24.1 61.5,25 C57.3,25.9 54.9,28.3 54,32.5 C53.1,28.3 50.7,25.9 46.5,25 C50.7,24.1 53.1,21.7 54,17.5 Z" />
+</vector>

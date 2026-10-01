@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- أيقونة الثيم (Android 13+): شكل واحد، النظام يلوّنه -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M52.2,42 C45,36.5 36,35.5 27.5,38.5 L27.5,74 C36,71 45,72 52.2,77.5 Z
+                          M55.8,42 C63,36.5 72,35.5 80.5,38.5 L80.5,74 C72,71 63,72 55.8,77.5 Z
+                          M54,17.5 C54.9,21.7 57.3,24.1 61.5,25 C57.3,25.9 54.9,28.3 54,32.5 C53.1,28.3 50.7,25.9 46.5,25 C50.7,24.1 53.1,21.7 54,17.5 Z" />
+</vector>
