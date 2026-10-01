@@ -18,6 +18,10 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            // قارئ PDF يضم مكتبات أصلية (Tesseract): نُبقي معماريات الهواتف الحقيقية فقط لتقليل الحجم
+            ndk {
+                abiFilters 'arm64-v8a', 'armeabi-v7a'
+            }
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,6 +29,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        resources {
+            excludes += ['/META-INF/{AL2.0,LGPL2.1}']
+        }
     }
 
     buildFeatures {
@@ -45,4 +55,12 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    // قارئ PDF المتقدّم (منقول من تطبيق الفيزيو)
+    // استخراج النص/إحداثيات الأسطر من PDF للقراءة الصوتية والترجمة
+    implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
+    // الأصوات العصبية (WebSocket في EdgeTtsClient)
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    // التعرّف الضوئي على الحروف (PDF ممسوح ضوئيًا) - نموذج اللغة يُنزَّل عند أول استخدام
+    implementation 'cz.adaptech.tesseract4android:tesseract4android:4.7.0'
 }
