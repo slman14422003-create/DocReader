@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- تلاشي دخول كامل (0 → 1) - يُستخدم لدخول MainActivity بعد شاشة splash،
+     مختلف عن fade_out.xml الموجود (اللي بيروح لـ 0.3 بس، مصمم لسيناريو تاني). -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <alpha
+        android:duration="360"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+</set>

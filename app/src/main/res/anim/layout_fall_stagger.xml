@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- تتابع دخول عناصر القائمة: فارق زمني أقل بين العناصر كي لا تنتظر العين
+     طويلًا في القوائم الطويلة (يبقى الإحساس سريعًا وسلسًا). -->
+<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/item_fall_in"
+    android:animationOrder="normal"
+    android:delay="4%" />

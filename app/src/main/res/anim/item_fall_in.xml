@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- دخول عنصر قائمة: صعود ناعم + تلاشي، بمنحنى Material القياسي (fast-out-slow-in)
+     بدل decelerate الحاد، وبدون تكبير (كان يسبب ارتجاجًا بصريًا مع النصوص). -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/fast_out_slow_in"
+    android:shareInterpolator="true">
+    <translate
+        android:duration="280"
+        android:fromYDelta="8%"
+        android:toYDelta="0" />
+    <alpha
+        android:duration="260"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+</set>
