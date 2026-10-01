@@ -2,12 +2,10 @@ package com.docreader.app;
 
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -18,9 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.docreader.app.ui.PdfPageAdapter;
+import com.docreader.app.pdf.PdfViewerActivity;
 import com.docreader.app.util.FileTypeUtils;
 import com.docreader.app.viewer.DocxHtmlRenderer;
 import com.docreader.app.viewer.HtmlPage;
@@ -47,16 +44,11 @@ public class DocumentViewerActivity extends AppCompatActivity {
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private View progressLoading;
-    private ViewPager2 pager;
     private View imageScroll;
     private ImageView imageSingle;
     private WebView webViewContent;
     private View layoutError;
     private TextView textError;
-    private TextView textPageIndicator;
-
-    private PdfRenderer pdfRenderer;
-    private ParcelFileDescriptor pdfFd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,13 +60,11 @@ public class DocumentViewerActivity extends AppCompatActivity {
         applyWindowInsets(toolbar);
 
         progressLoading = findViewById(R.id.progressLoading);
-        pager = findViewById(R.id.pager);
         imageScroll = findViewById(R.id.imageScroll);
         imageSingle = findViewById(R.id.imageSingle);
         webViewContent = findViewById(R.id.webViewContent);
         layoutError = findViewById(R.id.layoutError);
         textError = findViewById(R.id.textError);
-        textPageIndicator = findViewById(R.id.textPageIndicator);
         webViewContent.getSettings().setLoadWithOverviewMode(true);
         webViewContent.getSettings().setUseWideViewPort(true);
 
@@ -107,6 +97,13 @@ public class DocumentViewerActivity extends AppCompatActivity {
     private void loadDocument(Uri uri, String name) {
         FileTypeUtils.DocType type = FileTypeUtils.detect(name);
 
+        // ملفات PDF يتولاها قارئ PDF المتقدّم (القراءة الصوتية، التشكيل، الترجمة، البحث، OCR...)
+        if (type == FileTypeUtils.DocType.PDF) {
+            PdfViewerActivity.open(this, uri);
+            finish();
+            return;
+        }
+
         if (FileTypeUtils.isLegacyBinary(type)) {
             showError(getString(R.string.legacy_format_unsupported));
             return;
@@ -115,9 +112,6 @@ public class DocumentViewerActivity extends AppCompatActivity {
         executor.execute(() -> {
             try {
                 switch (type) {
-                    case PDF:
-                        loadPdf(uri);
-                        break;
                     case DOCX:
                         loadDocx(uri);
                         break;
@@ -148,28 +142,6 @@ public class DocumentViewerActivity extends AppCompatActivity {
             } catch (Exception e) {
                 mainHandler.post(() -> showError(getString(R.string.error_loading)));
             }
-        });
-    }
-
-    // ---------- PDF ----------
-    private void loadPdf(Uri uri) throws Exception {
-        // PdfRenderer يحتاج ملف قابل للـ seek، لذلك ننسخه إلى ملف مؤقت أولاً
-        File temp = copyToTemp(uri, "temp_view.pdf");
-        pdfFd = ParcelFileDescriptor.open(temp, ParcelFileDescriptor.MODE_READ_ONLY);
-        pdfRenderer = new PdfRenderer(pdfFd);
-        int pageCount = pdfRenderer.getPageCount();
-
-        mainHandler.post(() -> {
-            pager.setAdapter(new PdfPageAdapter(pdfRenderer));
-            showContentView(pager);
-            textPageIndicator.setVisibility(View.VISIBLE);
-            textPageIndicator.setText(getString(R.string.page_indicator, 1, pageCount));
-            pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-                @Override
-                public void onPageSelected(int position) {
-                    textPageIndicator.setText(getString(R.string.page_indicator, position + 1, pageCount));
-                }
-            });
         });
     }
 
@@ -336,10 +308,8 @@ public class DocumentViewerActivity extends AppCompatActivity {
 
     private void showContentView(View view) {
         progressLoading.setVisibility(View.GONE);
-        pager.setVisibility(view == pager ? View.VISIBLE : View.GONE);
         imageScroll.setVisibility(view == imageScroll ? View.VISIBLE : View.GONE);
         webViewContent.setVisibility(view == webViewContent ? View.VISIBLE : View.GONE);
-        if (view != pager) textPageIndicator.setVisibility(View.GONE);
         layoutError.setVisibility(View.GONE);
     }
 
@@ -353,10 +323,5 @@ public class DocumentViewerActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         executor.shutdownNow();
-        try {
-            if (pdfRenderer != null) pdfRenderer.close();
-            if (pdfFd != null) pdfFd.close();
-        } catch (Exception ignored) {
-        }
     }
 }

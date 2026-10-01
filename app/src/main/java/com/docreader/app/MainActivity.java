@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.docreader.app.model.RecentFile;
 import com.docreader.app.ui.RecentFilesAdapter;
 import com.docreader.app.util.AppDialogs;
+import com.docreader.app.pdf.PdfViewerActivity;
 import com.docreader.app.util.FileTypeUtils;
 import com.docreader.app.util.RecentFilesStore;
 
@@ -107,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         String displayName = FileTypeUtils.queryDisplayName(this, uri);
         RecentFilesStore.add(this, new RecentFile(
                 uri.toString(), displayName, "", System.currentTimeMillis()));
+
+        if (FileTypeUtils.detect(displayName) == FileTypeUtils.DocType.PDF) {
+            PdfViewerActivity.open(this, uri);
+            return;
+        }
 
         Intent intent = new Intent(this, DocumentViewerActivity.class);
         intent.putExtra(DocumentViewerActivity.EXTRA_URI, uri.toString());

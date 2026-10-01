@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.docreader.app.pdf.DictionaryPacksUi;
 import com.docreader.app.util.AppDialogs;
 import com.docreader.app.util.RecentFilesStore;
 import com.docreader.app.util.ThemeUtils;
@@ -20,6 +21,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class SettingsActivity extends AppCompatActivity {
 
     private TextView textColorModeValue;
+    private TextView textDictPacksValue;
+    private DictionaryPacksUi dictPacksUi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +41,12 @@ public class SettingsActivity extends AppCompatActivity {
                     ThemeUtils.setMode(this, mode);
                     updateColorModeLabel();
                 }));
+
+        // قارئ PDF: مكتبات الكلمات (قاموس التشكيل للقراءة الصوتية)
+        textDictPacksValue = findViewById(R.id.textDictPacksValue);
+        dictPacksUi = new DictionaryPacksUi(this, this::updateDictPacksLabel);
+        updateDictPacksLabel();
+        findViewById(R.id.rowDictPacks).setOnClickListener(v -> dictPacksUi.show());
 
         findViewById(R.id.rowClearRecent).setOnClickListener(v -> showClearRecentDialog());
         findViewById(R.id.rowAbout).setOnClickListener(v -> showAboutDialog());
@@ -59,6 +68,16 @@ public class SettingsActivity extends AppCompatActivity {
                     root.getPaddingRight(), rootPaddingBottom + bars.bottom);
             return insets;
         });
+    }
+
+    private void updateDictPacksLabel() {
+        textDictPacksValue.setText(DictionaryPacksUi.summary(this));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dictPacksUi != null) dictPacksUi.release();
     }
 
     private void updateColorModeLabel() {
