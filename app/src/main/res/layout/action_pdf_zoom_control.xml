@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- بِسمة زجاجية واحدة (نفس bg_glass_chip المستخدم في شرائح/كبسولات بقية
+     التطبيق) تجمع زرّي تصغير/تكبير في حاوية واحدة، كل زر بنفس أسلوب أزرار
+     الأيقونات الدائرية (ripple دائري عبر bg_icon_button) المستخدم في رؤوس
+     الشاشات - بدل أيقونتي + و- عائمتين بلا أي حاوية بصرية. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/bg_glass_chip"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp">
+
+    <ImageButton
+        android:id="@+id/btn_pdf_zoom_out"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_icon_button"
+        android:contentDescription="تصغير"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_minus"
+        android:tint="@color/pdf_text_primary" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="18dp"
+        android:background="@color/glass_border_soft" />
+
+    <ImageButton
+        android:id="@+id/btn_pdf_zoom_in"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_icon_button"
+        android:contentDescription="تكبير"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_plus"
+        android:tint="@color/pdf_text_primary" />
+</LinearLayout>

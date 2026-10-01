@@ -29,13 +29,6 @@
             android:layout_gravity="center"
             android:indeterminateTint="@color/accent_primary" />
 
-        <!-- لصفحات PDF أو شرائح PowerPoint -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
-
         <!-- لنص Word / RTF / TXT -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerContent"
@@ -140,17 +133,5 @@
         </LinearLayout>
 
     </FrameLayout>
-
-    <!-- شريط صفحات/شرائح سفلي -->
-    <TextView
-        android:id="@+id/textPageIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_primary"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/text_secondary"
-        android:textSize="12sp"
-        android:visibility="gone" />
 
 </LinearLayout>

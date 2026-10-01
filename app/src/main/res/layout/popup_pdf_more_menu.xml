@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- قائمة "المزيد" في قارئ PDF: بطاقة زجاجية قابلة للتمرير (لأن عدد الصفوف زاد) بنفس أنماط
+     صفوف الإعدادات. تُعرض داخل PopupWindow مخصّص من PdfViewerActivity (انظر showMoreMenu). -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="264dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup_menu"
+    android:clipToOutline="true"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout
+            android:id="@+id/row_pdf_read_aloud"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_volume" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="القراءة الصوتية للملف"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_search"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_search" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="بحث داخل الملف"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_bookmark"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_bookmark" />
+
+            <TextView
+                android:id="@+id/txt_pdf_bookmark"
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إضافة إشارة مرجعية للصفحة"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_bookmarks"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_clipboard" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الإشارات المرجعية"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_goto"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_arrow_up" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الانتقال إلى صفحة"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_night_pages"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_moon" />
+
+            <TextView
+                android:id="@+id/txt_pdf_night_pages"
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="وضع الصفحة: عادي"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_translate_page"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_globe" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ترجمة الصفحة"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_translate_full"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_pdf" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ترجمة الملف بالكامل (PDF)"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_save_copy"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_download" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حفظ نسخة على الجهاز"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_open_external"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_share_out" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="فتح بتطبيق آخر"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+
+        <View style="@style/Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/row_pdf_pick_another"
+            style="@style/Settings.Row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp">
+
+            <ImageView
+                style="@style/Settings.RowIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_pdf_folder" />
+
+            <TextView
+                style="@style/Settings.RowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="فتح ملف PDF آخر"
+                android:textSize="14.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

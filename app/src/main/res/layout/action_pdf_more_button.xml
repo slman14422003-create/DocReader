@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- زر "المزيد" بنفس أسلوب أزرار الأيقونات الدائرية (Phizyo.IconButton)
+     المستخدم في رؤوس بقية شاشات التطبيق - يفتح popup_pdf_more_menu بدل
+     قائمة Toolbar الافتراضية. -->
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btn_pdf_more"
+    style="@style/Phizyo.IconButton"
+    android:layout_width="44dp"
+    android:layout_height="44dp"
+    android:layout_gravity="center_vertical"
+    android:contentDescription="المزيد"
+    android:src="@drawable/ic_more_vert" />
