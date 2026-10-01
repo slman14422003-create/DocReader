@@ -10,6 +10,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // مكتبة Tesseract4Android (OCR لقارئ PDF) تُنشر عبر JitPack فقط وليس Maven Central.
+        // حصرناه بمجموعتها فقط حتى لا يُستعمل مصدرًا لأي مكتبة أخرى.
+        maven {
+            url 'https://jitpack.io'
+            content {
+                includeGroup 'cz.adaptech.tesseract4android'
+            }
+        }
     }
 }
 
