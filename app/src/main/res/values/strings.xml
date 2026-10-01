@@ -28,4 +28,6 @@
     <string name="settings_about_sub">الإصدار %1$s</string>
     <string name="cancel">إلغاء</string>
     <string name="confirm">تأكيد</string>
+    <string name="settings_pdf_reader">قارئ PDF</string>
+    <string name="settings_dict_packs">حزم القواميس</string>
 </resources>
