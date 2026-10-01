@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- زر رئيسي: تعبئة برتقالية + ripple + حالات واضحة (عادي / مضغوط / معطّل).
+     الحالة المعطّلة كانت غير موجودة فيبدو الزر المعطّل كأنه فعّال. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple_on_accent">
+    <item>
+        <selector>
+            <item android:state_enabled="false">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/primary_disabled" />
+                    <corners android:radius="16dp" />
+                </shape>
+            </item>
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/primary_pressed" />
+                    <corners android:radius="16dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/primary_cyan" />
+                    <corners android:radius="16dp" />
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

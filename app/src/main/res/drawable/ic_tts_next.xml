@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- الصفحة التالية: تنقلب تلقائيًا في واجهة RTL -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/pdf_text_primary"
+        android:pathData="M6,6.9L6,17.1C6,17.7 6.65,18.05 7.15,17.75L15.2,12.65C15.65,12.37 15.65,11.63 15.2,11.35L7.15,6.25C6.65,5.95 6,6.3 6,6.9zM17,6h2v12h-2z" />
+</vector>

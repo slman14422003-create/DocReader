@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- زر التشغيل/الإيقاف المؤقت في مشغّل القراءة: دائرة بتدرّج برتقالي هوية التطبيق
+     مع ripple أبيض خفيف عند الضغط. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple_on_accent">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:angle="270"
+                android:endColor="@color/primary_cyan_dark"
+                android:startColor="@color/primary_cyan_light"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</ripple>

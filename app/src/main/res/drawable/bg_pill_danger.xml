@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- زر كبسولة أحمر لإجراءات الحذف/المسح (مثل زر Log out في Claude) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/danger_pill" />
+    <corners android:radius="100dp" />
+</shape>

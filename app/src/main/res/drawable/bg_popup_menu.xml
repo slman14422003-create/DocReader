@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- خلفية القوائم المنبثقة (قائمة شريط الأدوات الإضافية وغيرها): نفس تعبئة
+     وحدود بطاقات التطبيق الزجاجية، لكن بزوايا أنسب لعرض قائمة مدمجة. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/glass_fill_strong" />
+    <corners android:radius="16dp" />
+    <stroke android:width="1dp" android:color="@color/glass_border_soft" />
+</shape>

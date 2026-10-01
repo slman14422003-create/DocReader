@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- بطاقة صفحة PDF: ورقة بحدّ شعري وظل ناعم أسفلها (تعتمد ألوان الهوية فتتبدّل مع الوضع الداكن) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/shadow_strong" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <item android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/glass_fill_strong" />
+            <corners android:radius="6dp" />
+            <stroke android:width="1dp" android:color="@color/glass_border" />
+        </shape>
+    </item>
+</layer-list>
