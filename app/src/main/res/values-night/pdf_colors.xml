@@ -1,0 +1,64 @@
+<resources>
+    <!-- الوضع الليلي: رمادي محايد قريب من الأسود (مثل الوضع الداكن في تطبيق
+         Claude على أندرويد) بدل الرمادي الدافئ القديم، مع نفس البرتقالي
+         الطوبي كلون علامة تجارية ثابت. -->
+    <color name="bg_deep_1">#131313</color>
+    <color name="bg_deep_2">#181818</color>
+    <color name="bg_deep_3">#1E1E1E</color>
+    <color name="bg_dark">#131313</color>
+    <color name="claude_orange">#D97757</color>
+    <color name="primary_cyan">#E0916D</color>
+    <color name="primary_cyan_dark">#EFAA8B</color>
+    <color name="primary_cyan_light">#F0B99E</color>
+    <color name="accent_violet">#B7B4AC</color>
+    <color name="accent_violet_dark">#D2CFC6</color>
+    <color name="glass_fill">#1F1F1F</color>
+    <color name="glass_fill_strong">#1F1F1F</color>
+    <color name="glass_fill_soft">#1A1A1A</color>
+    <color name="glass_border">#363636</color>
+    <color name="glass_border_soft">#2A2A2A</color>
+    <color name="glass_highlight">#26FFFFFF</color>
+    <color name="glass_top_sheen">#20FFFFFF</color>
+    <color name="shadow_soft">#55000000</color>
+    <color name="shadow_strong">#70000000</color>
+    <color name="surface_dark">#1F1F1F</color>
+    <color name="card_dark">#1F1F1F</color>
+    <color name="pdf_text_primary">#F2F2F2</color>
+    <color name="pdf_text_secondary">#A6A6A6</color>
+    <color name="pdf_text_tertiary">#7C7C7C</color>
+    <color name="accent_red">#E0916D</color>
+    <color name="accent_red_dark">#EFAA8B</color>
+    <color name="accent_green">#8CB894</color>
+    <color name="accent_gold">#D3A461</color>
+    <color name="warning_fill">#3A2A22</color>
+    <color name="warning_border">#75463A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="overlay_scrim">#B3000000</color>
+    <color name="m3_primary_container">#583020</color>
+    <color name="m3_on_primary_container">#FADACB</color>
+    <color name="m3_secondary_container">#2E2E2E</color>
+    <color name="m3_on_secondary_container">#E4E4E4</color>
+    <color name="m3_tertiary">#D3A461</color>
+    <color name="m3_on_tertiary">#241A0D</color>
+    <color name="m3_tertiary_container">#4A3820</color>
+    <color name="m3_on_tertiary_container">#F6D9A9</color>
+    <color name="m3_surface_variant">#2B2B2B</color>
+    <color name="m3_on_surface_variant">#A6A6A6</color>
+    <color name="m3_outline">#7C7C7C</color>
+    <color name="m3_outline_variant">#333333</color>
+    <color name="m3_error">#E0916D</color>
+    <color name="m3_on_error">#35110A</color>
+    <color name="m3_error_container">#5A2820</color>
+    <color name="m3_on_error_container">#FFDAD2</color>
+    <color name="m3_surface_container">#1B1B1B</color>
+    <color name="m3_surface_container_high">#2B2B2B</color>
+
+    <!-- ===== رموز تصميم جديدة (تحسين الواجهة) ===== -->
+    <color name="card_shadow">#66000000</color>
+    <color name="primary_soft">#2E211B</color>
+    <color name="ripple_on_accent">#33FFFFFF</color>
+    <color name="primary_pressed">#C56A4B</color>
+    <color name="primary_disabled">#4A3229</color>
+    <color name="field_focus_border">#E0916D</color>
+</resources>

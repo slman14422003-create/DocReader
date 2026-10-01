@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.DocReader.PdfReader" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/primary_cyan</item>
+        <item name="colorPrimaryVariant">@color/primary_cyan_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/m3_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/m3_on_primary_container</item>
+        <item name="colorSecondary">@color/accent_violet</item>
+        <item name="colorSecondaryVariant">@color/accent_violet_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/m3_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/m3_on_secondary_container</item>
+        <item name="colorTertiary">@color/m3_tertiary</item>
+        <item name="colorOnTertiary">@color/m3_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/m3_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/m3_on_tertiary_container</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/pdf_text_primary</item>
+        <item name="colorSurfaceVariant">@color/m3_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/m3_on_surface_variant</item>
+        <item name="colorSurfaceContainer">@color/m3_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/m3_surface_container_high</item>
+        <item name="colorOutline">@color/m3_outline</item>
+        <item name="colorOutlineVariant">@color/m3_outline_variant</item>
+        <item name="colorError">@color/m3_error</item>
+        <item name="colorOnError">@color/m3_on_error</item>
+        <item name="colorErrorContainer">@color/m3_error_container</item>
+        <item name="colorOnErrorContainer">@color/m3_on_error_container</item>
+        <item name="android:statusBarColor">@color/bg_deep_1</item>
+        <item name="android:navigationBarColor">@color/bg_deep_1</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColorHint">@color/pdf_text_tertiary</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.M3.Corner.ExtraSmall</item>
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.M3.Corner.Small</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.M3.Corner.Medium</item>
+        <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.M3.Corner.Large</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.ClinicalMaster.Dialog</item>
+        <item name="android:windowAnimationStyle">@style/Animation.ClinicalMaster.Activity</item>
+        <item name="android:colorControlHighlight">@color/glass_highlight</item>
+        <item name="colorControlHighlight">@color/glass_highlight</item>
+        <item name="android:colorEdgeEffect" tools:targetApi="lollipop">@color/primary_cyan</item>
+        <item name="android:textColorHighlight">@color/m3_primary_container</item>
+        <item name="android:textColorLink">@color/primary_cyan_dark</item>
+        <item name="android:textCursorDrawable" tools:targetApi="q">@drawable/cursor_brand</item>
+    </style>
+</resources>
