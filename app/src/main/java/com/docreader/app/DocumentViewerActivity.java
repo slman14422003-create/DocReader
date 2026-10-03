@@ -104,6 +104,13 @@ public class DocumentViewerActivity extends AppCompatActivity {
             return;
         }
 
+        // Word / Excel: محرر كامل (تحرير + حفظ + قراءة صوتية)
+        if (type == FileTypeUtils.DocType.DOCX || type == FileTypeUtils.DocType.XLSX) {
+            DocEditorActivity.open(this, uri, name);
+            finish();
+            return;
+        }
+
         if (FileTypeUtils.isLegacyBinary(type)) {
             showError(getString(R.string.legacy_format_unsupported));
             return;

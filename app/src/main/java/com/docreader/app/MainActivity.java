@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textEmptyState;
 
     private final ActivityResultLauncher<String[]> openDocumentLauncher =
-            registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
+            registerForActivityResult(new OpenDocumentRw(), uri -> {
                 if (uri != null) openViewer(uri);
             });
 
@@ -97,12 +97,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /** منتقي ملفات يطلب صلاحية قراءة وكتابة دائمة (لحفظ تعديلات Word/Excel على الملف الأصلي). */
+    private static final class OpenDocumentRw extends ActivityResultContracts.OpenDocument {
+        @Override
+        public Intent createIntent(android.content.Context context, String[] input) {
+            Intent i = super.createIntent(context, input);
+            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            return i;
+        }
+    }
+
     private void openViewer(Uri uri) {
         try {
             getContentResolver().takePersistableUriPermission(
-                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } catch (SecurityException ignored) {
-            // بعض المزودين لا يدعمون صلاحيات دائمة؛ نتابع بصلاحية مؤقتة
+                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } catch (SecurityException e) {
+            try {
+                getContentResolver().takePersistableUriPermission(
+                        uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            } catch (SecurityException ignored) {
+                // بعض المزودين لا يدعمون صلاحيات دائمة؛ نتابع بصلاحية مؤقتة
+            }
         }
 
         String displayName = FileTypeUtils.queryDisplayName(this, uri);

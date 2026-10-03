@@ -36,6 +36,13 @@
             android:label="@string/viewer_title" />
 
         <activity
+            android:name=".DocEditorActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize|uiMode"
+            android:exported="false"
+            android:label="@string/viewer_title"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/settings_title" />
