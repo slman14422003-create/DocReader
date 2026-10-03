@@ -132,7 +132,7 @@ public class DocEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doc_editor);
 
-        toolbar = findViewById(R.id.editorToolbar);
+        toolbar = findViewById(R.id.toolbar);
         web = findViewById(R.id.editorWeb);
         progress = findViewById(R.id.editorProgress);
         errorView = findViewById(R.id.editorError);
@@ -154,6 +154,7 @@ public class DocEditorActivity extends AppCompatActivity {
         }
         uri = Uri.parse(u);
         isExcel = FileTypeUtils.detect(name) == FileTypeUtils.DocType.XLSX;
+        updateSubtitle();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -194,8 +195,12 @@ public class DocEditorActivity extends AppCompatActivity {
 
     private void buildMenu() {
         Menu m = toolbar.getMenu();
-        m.add(0, MENU_READ, 0, R.string.editor_read_aloud).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        m.add(0, MENU_SAVE, 1, R.string.editor_save).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        MenuItem read = m.add(0, MENU_READ, 0, R.string.editor_read_aloud);
+        read.setIcon(tinted(R.drawable.ic_volume));
+        read.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        MenuItem save = m.add(0, MENU_SAVE, 1, R.string.editor_save);
+        save.setIcon(tinted(R.drawable.ic_check));
+        save.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         m.add(0, MENU_SAVE_AS, 2, R.string.editor_save_as).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         m.add(0, MENU_SHARE, 3, R.string.editor_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         toolbar.setOnMenuItemClickListener(item -> {
@@ -218,6 +223,19 @@ public class DocEditorActivity extends AppCompatActivity {
         });
     }
 
+    private android.graphics.drawable.Drawable tinted(int res) {
+        android.graphics.drawable.Drawable d = androidx.core.content.ContextCompat.getDrawable(this, res);
+        if (d == null) return null;
+        d = d.mutate();
+        d.setTint(androidx.core.content.ContextCompat.getColor(this, R.color.pdf_text_primary));
+        return d;
+    }
+
+    private void updateSubtitle() {
+        String kind = isExcel ? "جدول Excel" : "مستند Word";
+        toolbar.setSubtitle(dirty ? kind + " · ● تعديلات غير محفوظة" : kind);
+    }
+
     // ------------------------------------------------------------------ WebView
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
@@ -231,6 +249,7 @@ public class DocEditorActivity extends AppCompatActivity {
         s.setSupportZoom(false);
         web.addJavascriptInterface(new Bridge(), "Android");
         web.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        web.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.bg_deep_1));
     }
 
     private void loadContent() {
@@ -295,7 +314,7 @@ public class DocEditorActivity extends AppCompatActivity {
         public void onDirty(boolean d) {
             main.post(() -> {
                 dirty = d;
-                toolbar.setTitle((d ? "• " : "") + (name == null ? "" : name));
+                updateSubtitle();
             });
         }
 
@@ -404,7 +423,7 @@ public class DocEditorActivity extends AppCompatActivity {
 
     private void markClean() {
         dirty = false;
-        toolbar.setTitle(name == null ? "" : name);
+        updateSubtitle();
         js("window.markSaved && window.markSaved()");
     }
 

@@ -32,11 +32,13 @@
 
         <activity
             android:name=".DocumentViewerActivity"
+            android:theme="@style/Theme.DocReader.PdfReader"
             android:exported="false"
             android:label="@string/viewer_title" />
 
         <activity
             android:name=".DocEditorActivity"
+            android:theme="@style/Theme.DocReader.PdfReader"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize|uiMode"
             android:exported="false"
             android:label="@string/viewer_title"
@@ -44,6 +46,7 @@
 
         <activity
             android:name=".SettingsActivity"
+            android:theme="@style/Theme.DocReader.PdfReader"
             android:exported="false"
             android:label="@string/settings_title" />
 

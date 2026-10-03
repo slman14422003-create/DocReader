@@ -69,6 +69,7 @@ body.night #dlg .bt button.p{color:#0b1b33}
 #findbar{display:none;background:var(--rib);border-bottom:1px solid var(--ribline);padding:5px 8px;gap:6px;align-items:center;flex-wrap:wrap}
 #findbar input{height:32px;border:1px solid var(--ribline);border-radius:5px;padding:0 8px;background:var(--sheet);color:var(--ink);font:inherit;width:130px}
 </style>
+<link rel="stylesheet" href="editor_theme.css">
 </head>
 <body>
 <div id="app">
@@ -137,7 +138,7 @@ body.night #dlg .bt button.p{color:#0b1b33}
     </div>
     <div class="pane" id="p-view">
       <div class="grp"><button class="rb" data-a="zoomOut">－</button><button class="rb" id="zlbl" data-a="zoomReset">100%</button><button class="rb" data-a="zoomIn">＋</button><button class="rb lbl" data-a="fit">ملاءمة العرض</button></div>
-      <div class="grp"><button class="rb lbl" data-a="night">🌙 الوضع الليلي</button><button class="rb lbl" data-a="speak">🔊 قراءة</button></div>
+      <div class="grp"><button class="rb lbl" data-a="layoutMode">📱 جوال/صفحة</button><button class="rb lbl" data-a="night">🌙 الوضع الليلي</button><button class="rb lbl" data-a="speak">🔊 قراءة</button></div>
     </div>
   </div>
   <div id="findbar">
@@ -162,6 +163,7 @@ const AN = window.Android || {
   pickImage() { window.__pickCalled = true; }, toggleSpeech() {}
 };
 const page = $('page'), wrap = $('wrap'), sheet = $('sheet');
+let reflow = innerWidth < 760;
 let dirty = false, zoom = 1, pageNum = false, savedRange = null, curImg = null;
 const PG = { size: 'A4', land: false, mar: 2.54 };
 const SIZES = { A4: [21, 29.7], Letter: [21.59, 27.94], A5: [14.8, 21] };
@@ -227,7 +229,7 @@ function pickColor(anchor, cb, withNone) {
   if (withNone) { const b = document.createElement('button'); b.textContent = 'بلا لون'; b.onclick = () => { p.style.display = 'none'; cb(null); }; row.appendChild(b); }
   p.appendChild(row);
   const r = anchor.getBoundingClientRect(); p.style.display = 'block';
-  p.style.top = Math.min(innerHeight - p.offsetHeight - 6, r.bottom + 4) + 'px';
+  p.style.top = (r.bottom + 4 + p.offsetHeight > innerHeight ? Math.max(4, r.top - p.offsetHeight - 6) : r.bottom + 4) + 'px';
   p.style.left = Math.max(4, Math.min(innerWidth - 226, r.left)) + 'px';
 }
 document.addEventListener('pointerdown', e => { if (!$('pal').contains(e.target) && !e.target.closest('[data-a=fore],[data-a=hilite],[data-a=cellBg]')) $('pal').style.display = 'none'; }, true);
@@ -248,12 +250,19 @@ function loadDoc() {
   scheduleCount(); fitIfNarrow(); snapNow();
 }
 function applyPage() {
+  document.body.classList.toggle('reflow', reflow);
   let [w, h] = SIZES[PG.size] || SIZES.A4; if (PG.land) [w, h] = [h, w];
-  sheet.style.width = (w / 2.54 * 96) + 'px'; sheet.style.minHeight = (h / 2.54 * 96) + 'px';
-  const m = PG.mar / 2.54 * 96; sheet.style.padding = m + 'px';
-  $('stPage').textContent = PG.size + (PG.land ? ' عرضي' : '');
+  if (reflow) {
+    $('zoomer').style.width = '100%'; sheet.style.width = '100%'; sheet.style.minHeight = '60vh'; sheet.style.padding = '18px 16px';
+  } else {
+    $('zoomer').style.width = 'max-content';
+    sheet.style.width = (w / 2.54 * 96) + 'px'; sheet.style.minHeight = (h / 2.54 * 96) + 'px';
+    sheet.style.padding = (PG.mar / 2.54 * 96) + 'px';
+  }
+  $('stPage').textContent = reflow ? 'عرض الجوال' : PG.size + (PG.land ? ' عرضي' : '');
 }
-function fitIfNarrow() { const need = sheet.offsetWidth + 16; if (innerWidth < need) setZoom((innerWidth - 12) / sheet.offsetWidth); }
+function fitIfNarrow() { if (reflow) { setZoom(1); return; } const need = sheet.offsetWidth + 16; if (innerWidth < need) setZoom((innerWidth - 12) / sheet.offsetWidth); }
+function withPageLayout(fn) { if (!reflow) return fn(); const z = zoom; reflow = false; applyPage(); setZoom(1); try { return fn(); } finally { reflow = true; applyPage(); setZoom(z); } }
 function setZoom(z) { zoom = Math.max(0.3, Math.min(3, z)); $('zoomer').style.zoom = zoom; $('zlbl').textContent = Math.round(zoom * 100) + '%'; }
 
 /* ---------- تنفيذ الأوامر ---------- */
@@ -395,6 +404,7 @@ const A = {
   pbBefore() { blocksAttr(b => { b.style.pageBreakBefore = b.style.pageBreakBefore === 'always' ? '' : 'always'; b.style.borderTop = b.style.pageBreakBefore ? '2px dashed #99a' : ''; }); },
   zoomIn() { setZoom(zoom + .1); }, zoomOut() { setZoom(zoom - .1); }, zoomReset() { setZoom(1); }, fit() { setZoom((wrap.clientWidth - 12) / sheet.offsetWidth * 1); },
   night() { document.body.classList.toggle('night'); },
+  layoutMode() { reflow = !reflow; applyPage(); fitIfNarrow(); toast(reflow ? 'عرض الجوال' : 'عرض الصفحة'); },
   imgPlus() { imgScale(1.2); }, imgMinus() { imgScale(1 / 1.2); }, imgFull() { if (curImg) { curImg.style.width = '100%'; curImg.style.height = 'auto'; curImg.removeAttribute('width'); curImg.removeAttribute('height'); markDirty(); posImgTb(); } },
   imgDel() { if (curImg) { curImg.remove(); selectImg(null); markDirty(); } }
 };
@@ -610,11 +620,11 @@ function clearHighlight() { if (hlEl) { hlEl.classList.remove('speaking'); hlEl 
 window.clearHighlight = clearHighlight;
 
 window.exportAndSave = function (mode) {
-  try { const j = exportModel(); AN.onExported(mode, j); dirty = false; $('stDirty').textContent = ''; }
+  try { const j = withPageLayout(exportModel); AN.onExported(mode, j); dirty = false; $('stDirty').textContent = ''; }
   catch (e) { AN.toast('تعذر التصدير: ' + e.message); }
 };
 window.markSaved = function () { dirty = false; $('stDirty').textContent = ''; try { AN.onDirty(false); } catch (e) {} };
-window.__test = { exportModel, page, A, insertTable, PG };
+window.__test = { exportModel: () => withPageLayout(exportModel), page, A, insertTable, PG };
 loadDoc();
 </script>
 </body>

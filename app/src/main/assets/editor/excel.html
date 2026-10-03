@@ -71,8 +71,9 @@ button,select,input,textarea{font:inherit;color:inherit}
 .pal i{display:block;aspect-ratio:1;border-radius:4px;border:1px solid rgba(0,0,0,.2)}
 #toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#323130;color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;z-index:60;display:none;max-width:80%}
 </style>
+<link rel="stylesheet" href="editor_theme.css">
 </head>
-<body>
+<body class="xl">
 <div id="app">
   <div id="ribbon"><div id="tabsbar"></div><div id="panel"></div></div>
   <div id="fbar">
@@ -101,7 +102,7 @@ const AN = window.Android || {
   getInitialContent: () => JSON.stringify({ d1904: false, styles: [{}], sheets: [{ name: 'Sheet1', cells: [] }] }),
   isNight: () => false, onDirty() {}, onExported() {}, copyText(t) { window.__clip = t; }, pasteText: () => window.__clip || '', toast(m) { console.log(m); }
 };
-const ROW_W = 46, COL_H = 24, MAXR = 1048576, MAXC = 16384;
+const ROW_W = 48, COL_H = 28, MAXR = 1048576, MAXC = 16384;
 let wb, eng, cur = 0, zoom = 1, selMode = false, dirty = false;
 let sel = { r1: 1, c1: 1, r2: 1, c2: 1, full: null }, anchor = { r: 1, c: 1 }, act = { r: 1, c: 1 };
 let styles = [], styleIdx = new Map();
@@ -251,7 +252,7 @@ function render() {
     const cls = 'c' + (st.wrap ? ' w' : '');
     const fr = r <= fzR, fc = c <= fzC; let tr = '';
     if (fr || fc) tr = 'transform:translate(' + (fc ? sdx : 0) + 'px,' + (fr ? sdy : 0) + 'px);z-index:' + (fr && fc ? 3 : 2) + ';';
-    out.push('<div class="' + cls + '" data-r="' + r + '" data-c="' + c + '" style="inset-inline-start:' + rect.x + 'px;top:' + rect.y + 'px;width:' + w + 'px;height:' + h + 'px;' + tr + cellCss(st, cell, d) + '"><span dir="auto">' + esc(d.text) + '</span></div>');
+    out.push('<div class="' + cls + '" data-r="' + r + '" data-c="' + c + '" style="' + (sh.rtl ? 'right:' : 'left:') + rect.x + 'px;top:' + rect.y + 'px;width:' + w + 'px;height:' + h + 'px;' + tr + cellCss(st, cell, d) + '"><span dir="auto">' + esc(d.text) + '</span></div>');
   }
   for (const m of merges) { drawn.add(K(m.r1, m.c1)); drawCell(m.r1, m.c1, cellRect(m.r1, m.c1), true); }
   for (const r of rowList) {
@@ -869,7 +870,7 @@ window.clearHighlight = function () { $('speakbox').style.display = 'none'; };
 // ------------------------------------------------------------------ بدء التشغيل
 function init() {
   let model; try { model = JSON.parse(AN.getInitialContent()); } catch (e) { model = { styles: [{}], sheets: [{ name: 'Sheet1', cells: [] }] }; }
-  buildWb(model); if (AN.isNight && AN.isNight()) $('gridwrap').classList.add('night');
+  buildWb(model); if (AN.isNight && AN.isNight()) { $('gridwrap').classList.add('night'); document.body.classList.add('night'); }
   renderRibbon(); renderTabs(); layout(); render();
 }
 window.__test = { get wb() { return wb; }, get eng() { return eng; }, select, startEdit, commitEdit, setInput, beginOp, endOp, insertRows, deleteRows, insertCols, deleteCols, sortSel, doAct, exportModel, undo, redo, get sel() { return sel; }, set sel(v) { sel = v; }, get act() { return act; }, get styles() { return styles; }, render, layout, get cur() { return cur; } };

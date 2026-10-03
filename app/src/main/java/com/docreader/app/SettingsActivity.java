@@ -30,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.settings_title);
         toolbar.setNavigationOnClickListener(v -> finish());
         applyWindowInsets(toolbar);
 

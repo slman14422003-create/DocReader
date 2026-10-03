@@ -8,16 +8,7 @@
     android:orientation="vertical"
     android:background="@color/background_secondary">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@color/background_primary"
-        app:title="@string/settings_title"
-        app:titleTextColor="@color/text_primary"
-        app:navigationIcon="@drawable/ic_back"
-        app:navigationIconTint="@color/text_primary" />
+    <include layout="@layout/view_top_bar" />
 
     <ScrollView
         android:layout_width="match_parent"

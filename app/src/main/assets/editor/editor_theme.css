@@ -1,0 +1,86 @@
+/* تصميم موحّد لمحرّري Word وExcel على الجوال: نفس ألوان التطبيق، شريط الأدوات في الأسفل (في متناول الإبهام)،
+   أزرار كبيرة للمس، شرائح (pills) للتبويبات، وحوارات تظهر كورقة سفلية. */
+:root{--surf:#FAF9F6;--bgx:#F0EEE6;--card:#FFFFFF;--line:#E5E2D9;--line2:#DDD9CE;--chip:#EFEDE6;--chip2:#E5E2D9;
+  --ink:#1F1E1D;--mut:#6B6A65;--acc:#3B6FD6;--accsoft:rgba(59,111,214,.14);--safe:env(safe-area-inset-bottom,0px);
+  --rib:#FAF9F6;--ribline:#E5E2D9;--btn:#EFEDE6;--btnh:#E5E2D9;--act:rgba(59,111,214,.16);--bg:#F0EEE6;--sheet:#fff}
+body.night{--surf:#131313;--bgx:#0B0B0B;--card:#1F1F1F;--line:#2A2A2A;--line2:#363636;--chip:#242424;--chip2:#2F2F2F;
+  --ink:#F2F2F2;--mut:#A6A6A6;--acc:#8CB0F5;--accsoft:rgba(140,176,245,.2);
+  --rib:#131313;--ribline:#2A2A2A;--btn:#242424;--btnh:#2F2F2F;--act:rgba(140,176,245,.24);--bg:#0B0B0B}
+body.xl{--acc:#2E9E5B;--accsoft:rgba(46,158,91,.15)}
+body.xl.night{--acc:#5CC785;--accsoft:rgba(92,199,133,.2)}
+html,body{background:var(--surf);color:var(--ink);font-family:"Noto Sans Arabic","Segoe UI",Roboto,Arial,sans-serif;font-size:15px}
+#app{display:flex;flex-direction:column}
+
+/* ---------- الشريط السفلي: تبويبات (شرائح) + لوحة الأدوات ---------- */
+#tabs,#tabsbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;background:var(--rib);
+  padding:6px 10px calc(8px + var(--safe));border-top:1px solid var(--ribline);flex:none}
+#tabs::-webkit-scrollbar,#tabsbar::-webkit-scrollbar{display:none}
+#tabs button,#tabsbar button{flex:none;border:0;border-radius:999px;background:transparent;color:var(--mut);
+  padding:9px 16px;font:inherit;font-size:14px;font-weight:600;opacity:1;min-height:38px}
+#tabs button.on,#tabsbar button.on{background:var(--accsoft);color:var(--acc);border-radius:999px}
+body.night #tabs button,body.night #tabsbar button{color:var(--mut)}
+body.night #tabs button.on,body.night #tabsbar button.on{color:var(--acc)}
+#ribbon{background:var(--rib);border:0;border-top:1px solid var(--ribline);flex:none;padding:8px 6px;
+  display:flex;flex-direction:column-reverse}
+#panel{padding:2px 4px;gap:8px;min-height:0;align-items:center}
+
+/* مجموعات الأدوات كبطاقات صغيرة */
+.grp{background:var(--chip);border:0;border-radius:16px;padding:4px 6px;margin-inline-end:8px;min-height:50px;
+  display:inline-flex;align-items:center;gap:3px;flex:none}
+#panel .grp{flex-direction:row}
+.grp .row{gap:3px;min-height:0}
+.grp .gl{display:none}
+.rb,.btn{min-width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--ink);font-size:18px;
+  padding:0 8px;display:inline-flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap}
+.btn.big{height:48px;min-width:54px;flex-direction:column;font-size:20px;gap:0}
+.btn.big small{font-size:10.5px;color:var(--mut)}
+.rb.lbl{font-size:14px;font-weight:600}
+.rb:active,.btn:active{background:var(--chip2)}
+.rb.on,.btn.on{background:var(--accsoft);color:var(--acc);border:0}
+select.rs,select.sel{height:42px;border:1px solid var(--line2);border-radius:12px;background:var(--card);color:var(--ink);
+  padding:0 8px;font-size:14px;max-width:140px}
+
+/* ---------- المحتوى ---------- */
+#wrap{background:var(--bgx);padding:10px 8px 80px}
+#sheet{border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+body.reflow #sheet{border-radius:14px;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+#status{background:var(--rib);border-top:1px solid var(--ribline);color:var(--mut);font-size:12px;padding:4px 12px}
+#findbar{background:var(--surf);border-bottom:1px solid var(--line);padding:8px 10px;gap:8px}
+#findbar input{height:40px;border-radius:12px;border:1px solid var(--line2);background:var(--card);color:var(--ink);padding:0 12px;flex:1;min-width:110px}
+body.night #imgtb,#imgtb{background:var(--card);border:1px solid var(--line2);border-radius:14px}
+
+/* ترتيب الأجزاء: البحث ثم المحتوى ثم الحالة ثم الأدوات */
+#findbar{order:0}#wrap{order:1}#status{order:2}#ribbon{order:3}#tabs{order:4}
+#fbar{order:0}#gridwrap{order:1}#sheettabs{order:3}
+
+/* ---------- Excel ---------- */
+#fbar{background:var(--surf);border-bottom:1px solid var(--line);padding:6px 8px;gap:6px}
+#namebox,#fin{height:40px;border:1px solid var(--line2);border-radius:12px;background:var(--card);color:var(--ink);font-size:15px}
+#namebox{width:84px}
+#fx{color:var(--acc)}
+#fbar .btn{height:40px;min-width:40px}
+#gridwrap{background:var(--surf)}
+#sheettabs{background:var(--surf);border-top:1px solid var(--line);padding:6px 8px;gap:6px;align-items:center}
+.stab{border:1px solid var(--line2);border-radius:999px;padding:8px 16px;background:var(--card);color:var(--mut);font-weight:600;flex:none}
+.stab.on{background:var(--accsoft);color:var(--acc);border-color:var(--acc);box-shadow:none}
+#sheettabs .add{border:0;border-radius:50%;width:38px;height:38px;padding:0;background:var(--chip);color:var(--acc);font-size:22px;flex:none}
+#selbox{border-color:var(--acc);background:var(--accsoft)}#actbox,#cedit{border-color:var(--acc)}#handle{background:var(--acc)}
+
+/* ---------- الحوارات كورقة سفلية ---------- */
+#mask,#ov{align-items:flex-end!important;padding:0!important;background:rgba(0,0,0,.45)}
+#dlg{background:var(--surf)!important;color:var(--ink)!important;width:100%!important;max-width:none!important;min-width:0!important;
+  border-radius:24px 24px 0 0!important;padding:10px 18px calc(18px + var(--safe))!important;box-shadow:0 -6px 30px rgba(0,0,0,.35)!important;
+  max-height:85vh;overflow:auto}
+#dlg::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:var(--line2);margin:0 auto 12px}
+#dlg h3{font-size:17px;margin:0 0 8px}
+#dlg label{color:var(--mut)!important;font-size:13px}
+#dlg input,#dlg select{height:46px!important;border-radius:12px!important;border:1px solid var(--line2)!important;background:var(--card)!important;color:var(--ink)!important;font-size:15px}
+#dlg .bt{gap:10px;margin-top:16px}
+#dlg .bt button{height:46px!important;border-radius:23px!important;flex:1;font-size:15px;font-weight:600;border:1px solid var(--line2)!important;background:var(--chip)!important;color:var(--ink)!important}
+#dlg .bt button.p,#dlg .bt button.pri{background:var(--acc)!important;border-color:var(--acc)!important;color:#fff!important}
+body.night #dlg .bt button.p,body.night #dlg .bt button.pri{color:#0b0b0b!important}
+#dlg .menu button{padding:14px 6px;font-size:16px;color:var(--ink);border-bottom:1px solid var(--line)}
+#pal{background:var(--surf);border:1px solid var(--line2);border-radius:16px;width:270px;padding:12px}
+#pal .c{width:28px;height:28px;border-radius:8px;margin:2px}
+#toast{bottom:150px;background:var(--ink);color:var(--surf);border-radius:22px;padding:10px 18px;font-size:14px}
+#gridwrap,#gridwrap textarea{color:#222}

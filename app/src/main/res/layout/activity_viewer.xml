@@ -5,17 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_secondary">
+    android:background="@color/bg_deep_2">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@color/background_primary"
-        app:titleTextColor="@color/text_primary"
-        app:navigationIcon="@drawable/ic_back"
-        app:navigationIconTint="@color/text_primary" />
+    <include layout="@layout/view_top_bar" />
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -5,17 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_secondary">
+    android:background="@color/bg_deep_1">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/editorToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@color/background_primary"
-        app:titleTextColor="@color/text_primary"
-        app:navigationIcon="@drawable/ic_back"
-        app:navigationIconTint="@color/text_primary" />
+    <include layout="@layout/view_top_bar" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -32,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/accent_primary" />
+            android:indeterminateTint="@color/primary_cyan" />
 
         <TextView
             android:id="@+id/editorError"

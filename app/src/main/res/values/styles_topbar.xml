@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Phizyo.TopBarTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/pdf_text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Phizyo.TopBarSubtitle" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/pdf_text_secondary</item>
+        <item name="android:textSize">11.5sp</item>
+    </style>
+</resources>
